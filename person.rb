@@ -23,7 +23,7 @@ class Person
   end
 
   def validate_name
-    @corrector.correct_name(@name)
+    @name = @corrector.correct_name(@name)
   end
 
   private
@@ -32,3 +32,9 @@ class Person
     @age >= 18
   end
 end
+
+
+person = Person.new(3,33,'joel izaguirre')
+puts person.name
+puts person.validate_name
+puts person.name
