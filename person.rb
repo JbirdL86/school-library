@@ -12,6 +12,12 @@ class Person
     @age = age
     @parent_permission = parent_permission
     @corrector = Corrector.new
+    @rentals = []
+  end
+
+  def add_rentals(date, book)
+    rental = Rental.new(date, book, self)
+    @rentals.push(rental)
   end
 
   def can_use_services?
