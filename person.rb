@@ -3,7 +3,7 @@ require 'bundler/setup'
 require './corrector'
 
 class Person
-  attr_accessor :name, :age
+  attr_accessor :name, :age, :rentals
   attr_reader :id, :parent_permission
 
   def initialize(id, age, name = 'Unknown', parent_permission = true)

@@ -1,7 +1,7 @@
 # school-library
 
 > In this project we are creating an app to record what books
-> are in a library and who borrows them.The app user will be 
+> are in a library and who borrows them. The app user will be 
 > able to: Add new students or teachers, add new books, add 
 > records of who borrowed a given book and when.
 
@@ -13,7 +13,7 @@
 
 This repository includes files that can be run on the IRB:
 
-- Please run the program in a IRB enviorement
+- Run ruby main.rb
 
 ## Authors
 
