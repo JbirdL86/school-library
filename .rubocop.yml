@@ -62,8 +62,6 @@ Style/IfUnlessModifier:
   Enabled: false
 Style/GuardClause:
   Enabled: false
-Lint/UnneededDisable:
-  Enabled: false
 
 Naming/PredicateName:
   Enabled: false
