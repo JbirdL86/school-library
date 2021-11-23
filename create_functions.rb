@@ -1,4 +1,5 @@
 require_relative 'teacher'
+require_relative 'student'
 require_relative 'book'
 
 module CreateFunctions
@@ -34,7 +35,7 @@ module CreateFunctions
             puts 'Wrong input! Please try type Y/y for yes or N/n for no:'
           end
         end
-
+        puts 'test'
         person = Student.new(ids.pop, age, name, permission)
         person.validate_name
         puts 'Person created successfully!'
@@ -67,5 +68,34 @@ module CreateFunctions
     book = Book.new(title, author)
     puts 'Book created successfully!'
     book
+  end
+
+  def create_rental
+    check_empty(@book_list, 'Books', '4')
+
+    puts 'Select a book from the following list by number:'
+    @book_list.map do |book|
+      puts "#{@book_list.index(book)}) Title: '#{book.title}', Author: '#{book.author}'"
+    end
+
+    print 'Book #: '
+    book_selection = gets.chomp.to_i
+    book = @book_list[book_selection]
+
+    puts 'Select a person from the following list by number (not ID):'
+    @people.map do |person|
+      puts "#{@people.index(person)}) [#{person.class}] Name: #{person.name}. ID: #{person.id}, Age: #{person.age}"
+    end
+
+    print 'Person #: '
+    person_selection = gets.chomp.to_i
+    person = @people[person_selection]
+
+    print 'Date: '
+    date = gets.chomp.to_i
+
+    rental = Rental.new(date, book, person)
+    @rentals.push(rental)
+    puts 'Rental created successfully'
   end
 end
