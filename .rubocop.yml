@@ -52,6 +52,20 @@ Style/HashTransformValues:
   Enabled: false
 Style/OptionalBooleanParameter:
   Enabled: false
+Layout/EndOfLine:
+  Enabled: False
+Metrics/MethodLength:
+  Enabled: False
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/BlockNesting:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Lint/UnneededDisable:
+  Enabled: false
 
 Naming/PredicateName:
   Enabled: false
