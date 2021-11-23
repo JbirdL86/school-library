@@ -5,7 +5,6 @@ require_relative 'rental'
 
 class App
   include CreateFunctions
-  attr_accessor :book_list, :people, :rentals
 
   def initialize
     @book_list = []
@@ -87,49 +86,53 @@ class App
       end
     end
   end
+
+  def run
+    option = nil
+    puts 'Welcome To School Library App'
+
+    while option != '7'
+
+      puts 'Please choose an option by entering a number:'
+      puts '1 = List all books'
+      puts '2 - List all people'
+      puts '3 - Create a person'
+      puts '4 = Create a book'
+      puts '5 - Create a rental'
+      puts '6 = List all rentals for a given person id'
+      puts '7 = Exit'
+
+      option = gets.chomp.to_i
+
+      case option
+      when 1
+        list_books
+      when 2
+        list_people
+      when 3
+        @people.push(create_person)
+      when 4
+        @book_list.push(create_book)
+      when 5
+        create_rental
+      when 6
+        list_rentals
+      when 7
+        puts 'Thank you for using the School Library App'
+        break
+      else
+        puts 'Wrong input! Please enter a valid option between 1 and 7'
+      end
+      puts ''
+    end
+  end
 end
 
 def main
   app = App.new
-
-  option = nil
-  puts 'Welcome To School Library App'
-
-  while option != '7'
-
-    puts 'Please choose an option by entering a number:'
-    puts '1 = List all books'
-    puts '2 - List all people'
-    puts '3 - Create a person'
-    puts '4 = Create a book'
-    puts '5 - Create a rental'
-    puts '6 = List all rentals for a given person id'
-    puts '7 = Exit'
-
-    option = gets.chomp.to_i
-
-    case option
-    when 1
-      app.list_books
-    when 2
-      app.list_people
-    when 3
-      app.people.push(app.create_person)
-    when 4
-      app.book_list.push(app.create_book)
-    when 5
-      app.create_rental
-    when 6
-      app.list_rentals
-    when 7
-      puts 'Thank you for using the School Library App'
-      break
-    else
-      puts 'Wrong input! Please enter a valid option between 1 and 7'
-    end
-    puts ''
-  end
+  app.run
 end
 
 main
+
 # rubocop:enable Metrics\CyclomaticComplexity, Metrics/MethodLength
