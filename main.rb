@@ -34,6 +34,7 @@ def main
     when 6
       app.list_rentals
     when 7
+      app.save_data
       puts 'Thank you for using the School Library App'
       break
     else
