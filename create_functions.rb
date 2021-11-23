@@ -1,5 +1,3 @@
-# rubocop:disable Metrics\CyclomaticComplexity, Metrics/MethodLength
-require_relative 'student'
 require_relative 'teacher'
 require_relative 'book'
 
@@ -71,5 +69,3 @@ module CreateFunctions
     book
   end
 end
-
-# rubocop:enable Metrics\CyclomaticComplexity, Metrics/MethodLength

@@ -1,5 +1,3 @@
-# rubocop:disable Metrics\CyclomaticComplexity, Metrics/MethodLength
-
 require_relative 'create_functions'
 require_relative 'rental'
 require_relative 'library'
@@ -46,5 +44,3 @@ def main
 end
 
 main
-
-# rubocop:enable Metrics\CyclomaticComplexity, Metrics/MethodLength
