@@ -76,7 +76,7 @@ class Library
     people_data = JSON.parse(file_data)
     people = []
     people_data.each do |data, index|
-      people.push(Student.new(data['Class'], data['Age'], data['Name']))
+      people.push(Student.new(data['ID'], data['Age'], data['Name']))
     end
     @people = people
   end
