@@ -4,6 +4,8 @@ require_relative 'library'
 
 def main
   app = Library.new
+  app.read_people
+  app.read_books
   option = nil
   puts 'Welcome To School Library App'
 

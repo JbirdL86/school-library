@@ -1,5 +1,7 @@
 require_relative 'create_functions'
 require 'json'
+require_relative 'student'
+require_relative 'book'
 
 class Library
   include CreateFunctions
@@ -51,22 +53,52 @@ class Library
     end
   end
 
-  def parse_to_json(data_array)
-    data_string = ''
+  def parse_people_json(data_array)
+    peopleData = []
     data_array.each do |data, index|
-      data_string += "{#{data.class}, Name: #{data.name}, ID: #{data.id}, Age: #{data.age}}"
-      if index <= data_array.length
-        data_string += ', '
-      end
+      peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age})
     end
-    json_data = JSON.generate(data_string)
-    print json_data
-    json_data
+    return JSON.generate(peopleData)
+  end
+
+  def parse_book_json(data_array)
+    bookData = []
+    data_array.each do |data, index|
+      bookData.push({Title: data.title, Author: data.author})
+    end
+    return JSON.generate(bookData)
+  end
+
+  def read_people()
+    return [] if !File.exists?('person.json')
+    file = File.open('person.json')
+    file_data = file.read if file
+    people_data = JSON.parse(file_data)
+    people = []
+    people_data.each do |data, index|
+      people.push(Student.new(data['Class'], data['Age'], data['Name']))
+    end
+    @people = people
+  end
+
+  def read_books()
+    return [] if !File.exists?('books.json')
+    file = File.open('books.json')
+    file_data = file.read if file
+    books_data = JSON.parse(file_data)
+    books = []
+    books_data.each do |data, index|
+      books.push(Book.new(data['Title'], data['Author']))
+    end
+    @book_list = books
   end
 
   def save_data
-    people_data = parse_to_json(@people)
-    File.open('person.json', 'w+') { |f| f.write(people_data) } if !File.exist?('person.json')
-    print File.directory?('person.json')
+    if @people.length > 0 
+      File.open('person.json', 'w+') { |f| f.write(parse_people_json(@people)) }
+    end
+    if @book_list.length > 0 
+      File.open('books.json', 'w+') { |f| f.write(parse_book_json(@book_list)) }
+    end
   end
 end
