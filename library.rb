@@ -56,7 +56,13 @@ class Library
   def parse_people_json(data_array)
     peopleData = []
     data_array.each do |data, index|
+      puts data.class
+      if data.class.to_s === 'Student'
+      puts 'works'
       peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age})
+      elsif data.class.to_s === 'Teacher'
+        peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age, Specialization: data.specialization})
+      end
     end
     return JSON.generate(peopleData)
   end
@@ -76,7 +82,11 @@ class Library
     people_data = JSON.parse(file_data)
     people = []
     people_data.each do |data, index|
-      people.push(Student.new(data['ID'], data['Age'], data['Name']))
+      if data['Class'] == 'Student'
+        people.push(Student.new(data['ID'], data['Age'], data['Name']))
+      elsif data['Class'] == 'Teacher'
+        people.push(Teacher.new(data['ID'], data['Age'], data['Specialization'], data['Name']))
+      end
     end
     @people = people
   end
