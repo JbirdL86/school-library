@@ -1,1 +1,1 @@
-[{"Class":"Student","Name":"Juan","ID":14,"Age":"22","Rentals":[]}]
+[{"Class":"Teacher","Name":"Test","ID":72,"Age":"22","Specialization":"physics","Rentals":[{"Date":32423,"BookId":70,"PersonId":72},{"Date":324234,"BookId":12,"PersonId":72}]},{"Class":"Student","Name":"Stds","ID":13,"Age":"23","Rentals":[{"Date":2345324,"BookId":82,"PersonId":13}]}]

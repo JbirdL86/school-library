@@ -61,11 +61,12 @@ module CreateFunctions
   end
 
   def create_book
+    ids = (1...100).to_a.shuffle
     print 'Title: '
     title = gets.chomp
     print 'Author: '
     author = gets.chomp
-    book = Book.new(title, author)
+    book = Book.new(ids.pop, title, author)
     puts 'Book created successfully!'
     book
   end

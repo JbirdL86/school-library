@@ -1,10 +1,8 @@
 class Book
   attr_accessor :title, :author, :id, :rentals
 
-  @@ids = (1...100).to_a.shuffle
-
-  def initialize(title, author)
-    @id = @@ids.pop
+  def initialize(id, title, author)
+    @id = id
     @author = author
     @title = title
     @rentals = []
