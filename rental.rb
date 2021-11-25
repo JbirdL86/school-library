@@ -5,8 +5,6 @@ class Rental
     @date = date
     @book = book
     @person = person
-    puts person
-    puts book
     person.add_rental(self)
     book.add_rental(self)
   end
