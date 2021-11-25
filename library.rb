@@ -55,13 +55,15 @@ class Library
 
   def parse_people_json(data_array)
     peopleData = []
-    data_array.each do |data, index|
-      puts data.class
+    rental_data = []
+    data_array.each do |data|
+      data.rentals.each do |rental|
+        rental_data.push({Date: rental.date, BookId: rental.book.id, PersonId: rental.person.id})
+      end
       if data.class.to_s === 'Student'
-      puts 'works'
-      peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age})
+        peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age, Rentals: rental_data})
       elsif data.class.to_s === 'Teacher'
-        peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age, Specialization: data.specialization})
+        peopleData.push({Class: data.class, Name: data.name, ID: data.id, Age: data.age, Specialization: data.specialization, Rentals: rentals_data})
       end
     end
     return JSON.generate(peopleData)
@@ -69,10 +71,22 @@ class Library
 
   def parse_book_json(data_array)
     bookData = []
-    data_array.each do |data, index|
-      bookData.push({Title: data.title, Author: data.author})
+    rental_data = []
+    data_array.each do |data|
+      data.rentals.each do |rental|
+        rental_data.push({Date: rental.date, BookId: rental.book.id, PersonId: rental.person.id})
+      end
+      bookData.push({Title: data.title, Author: data.author, Rentals: rental_data})
     end
     return JSON.generate(bookData)
+  end
+
+  def parse_rental_json(data_array)
+    rental_data = []
+    data_array.each do |data|
+      rental_data.push({Date: data.date, BookId: data.book.id, PersonId: data.person.id})
+    end
+    return JSON.generate(rental_data)
   end
 
   def read_people()
@@ -97,10 +111,25 @@ class Library
     file_data = file.read if file
     books_data = JSON.parse(file_data)
     books = []
+    rentals = []
     books_data.each do |data, index|
       books.push(Book.new(data['Title'], data['Author']))
     end
     @book_list = books
+  end
+
+  def read_rentals()
+    return [] if !File.exists?('rentals.json')
+    file = File.open('rentals.json')
+    file_data = file.read if file
+    rentals_data = JSON.parse(file_data)
+    rentals = []
+    rentals_data.each do |data, index|
+      rental_book = @book_list.select {|book| book.id === data['BookId']}
+      rental_person = @people.select {|person| person.id === data['ID']}
+      rentals.push(Rental.new(data['Date'], rental_book, rental_person))
+    end
+    @rentals = rentals
   end
 
   def save_data
@@ -109,6 +138,9 @@ class Library
     end
     if @book_list.length > 0 
       File.open('books.json', 'w+') { |f| f.write(parse_book_json(@book_list)) }
+    end
+    if @rentals.length > 0
+      File.open('rentals.json', 'w+') { |f| f.write(parse_rental_json(@rentals)) }
     end
   end
 end

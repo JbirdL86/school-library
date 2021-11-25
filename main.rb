@@ -6,6 +6,7 @@ def main
   app = Library.new
   app.read_people
   app.read_books
+  app.read_rentals
   option = nil
   puts 'Welcome To School Library App'
 
