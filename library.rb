@@ -140,14 +140,8 @@ class Library
   end
 
   def save_data
-    if @people.!empty?
       File.open('person.json', 'w+') { |f| f.write(parse_people_json(@people)) }
-    end
-    if @book_list.!empty?
       File.open('books.json', 'w+') { |f| f.write(parse_book_json(@book_list)) }
-    end
-    if @rentals.!empty?
       File.open('rentals.json', 'w+') { |f| f.write(parse_rental_json(@rentals)) }
-    end
   end
 end
