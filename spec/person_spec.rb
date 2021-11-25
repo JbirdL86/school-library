@@ -1,5 +1,5 @@
-require '../person.rb'
-(id, age, name = 'Unknown', parent_permission = true)
+require_relative '../person.rb'
+
 describe Person do 
   context "When testing the Person class" do 
     it "Should create a new person when we call the class new method" do 

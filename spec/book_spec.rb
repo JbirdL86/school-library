@@ -1,4 +1,4 @@
-require '../book.rb'
+require_relative '../book.rb'
 
 describe Book do 
   context "When testing the Book class" do 
