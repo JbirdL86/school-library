@@ -140,8 +140,8 @@ class Library
   end
 
   def save_data
-      File.open('person.json', 'w+') { |f| f.write(parse_people_json(@people)) }
-      File.open('books.json', 'w+') { |f| f.write(parse_book_json(@book_list)) }
-      File.open('rentals.json', 'w+') { |f| f.write(parse_rental_json(@rentals)) }
+    File.open('person.json', 'w+') { |f| f.write(parse_people_json(@people)) }
+    File.open('books.json', 'w+') { |f| f.write(parse_book_json(@book_list)) }
+    File.open('rentals.json', 'w+') { |f| f.write(parse_rental_json(@rentals)) }
   end
 end
